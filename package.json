@@ -4,7 +4,8 @@
   "description": "REST API using fastify and mongodb",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/main.js",
+    "start": "node src/main.js"
   },
   "keywords": [
     "Fastify",
@@ -19,5 +20,8 @@
     "fastify": "^3.21.6",
     "fastify-swagger": "^4.12.3",
     "mongoose": "^6.0.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
   }
 }
