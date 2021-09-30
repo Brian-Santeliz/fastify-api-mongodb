@@ -16,7 +16,18 @@ module.exports = {
       const book = await Book.findOne({ _id: id });
       return book
         ? reply.code(200).send(book)
-        : reply.code(404).send({ msg: "Book noy found" });
+        : reply.code(404).send({ msg: "Book not found" });
+    } catch (error) {
+      throw boom.boomify(error);
+    }
+  },
+  deleteBook: async (req, reply) => {
+    const { id } = req.params;
+    try {
+      const book = await Book.findOne({ _id: id });
+      if (!book) return reply.code(404).send({ msg: "Book not found" });
+      await book.remove();
+      return reply.code(200).send({ msg: "Book deleted" });
     } catch (error) {
       throw boom.boomify(error);
     }

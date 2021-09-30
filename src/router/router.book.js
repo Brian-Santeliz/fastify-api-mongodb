@@ -2,6 +2,7 @@ const {
   getBooks,
   createBook,
   getBook,
+  deleteBook,
 } = require("../controller/controller.books");
 
 const routes = [
@@ -29,10 +30,8 @@ const routes = [
   },
   {
     method: "DELETE",
-    url: "/api/books/:id",
-    handler: (request, reply) => {
-      reply.send("books");
-    },
+    url: "/api/book/:id",
+    handler: deleteBook,
   },
 ];
 module.exports = {
