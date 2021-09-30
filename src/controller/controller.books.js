@@ -49,4 +49,24 @@ module.exports = {
       throw boom.boomify(error);
     }
   },
+  updateBook: async (req, reply) => {
+    const { id } = req.params;
+    if (!id) return reply.code(404).send({ msg: "Book id is required" });
+    const { title, description, img, isbn } = req.body;
+    if (!title || !description || !img || !isbn)
+      return reply.code(400).send({ msg: "All field is required" });
+    try {
+      const bookToUpdate = {
+        ...req.body,
+      };
+      const bookUpdated = await Book.findByIdAndUpdate(id, bookToUpdate, {
+        new: true,
+      });
+      return bookUpdated
+        ? reply.code(200).send({ msg: "Update!", book: bookUpdated })
+        : reply.code(400).send({ msg: "Book not update" });
+    } catch (error) {
+      throw boom.boomifcy(error);
+    }
+  },
 };

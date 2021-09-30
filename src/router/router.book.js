@@ -3,6 +3,7 @@ const {
   createBook,
   getBook,
   deleteBook,
+  updateBook,
 } = require("../controller/controller.books");
 
 const routes = [
@@ -23,10 +24,8 @@ const routes = [
   },
   {
     method: "PUT",
-    url: "/api/books/:id",
-    handler: (request, reply) => {
-      reply.send("books");
-    },
+    url: "/api/book/:id",
+    handler: updateBook,
   },
   {
     method: "DELETE",
