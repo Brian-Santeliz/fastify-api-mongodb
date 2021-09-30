@@ -5,7 +5,7 @@ const {
   deleteBook,
   updateBook,
 } = require("../controller/controller.books");
-
+const doc = require("./doc/books");
 const routes = [
   {
     method: "GET",
@@ -21,6 +21,7 @@ const routes = [
     method: "POST",
     url: "/api/books",
     handler: createBook,
+    schema: doc.createBookDoc,
   },
   {
     method: "PUT",
